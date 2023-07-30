@@ -1,38 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@color/black">
+    android:background="@color/white">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/image_change_explanaton"
-        android:id="@+id/image_change_explanation"
-        android:textColor="@color/white"
-        android:layout_marginTop="18.5dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="18dp"
-        android:textSize="18sp"
-        android:typeface="monospace"
-        android:textAlignment="center" />
+        android:layout_weight="1"
+        android:background="@color/white" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Test"
+            android:textSize="40sp"
+            android:layout_margin="10dp"/>
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:textSize="30sp"
+            />
 
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="10"
         android:id="@+id/intercepted_notification_logo_container">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:id="@+id/intercepted_notification_logo"
             android:src="@drawable/info"
             android:contentDescription="@string/notification_logo"
-            android:layout_gravity="center" />
-
+            android:layout_gravity="center_horizontal" />
     </FrameLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:foreground="@android:drawable/ic_menu_add"
+        android:layout_gravity="end"
+        android:layout_marginBottom="25dp"
+        android:layout_margin="25dp"
+        />
+
 
 </LinearLayout>

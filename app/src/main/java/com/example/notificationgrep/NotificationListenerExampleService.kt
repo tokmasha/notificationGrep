@@ -31,10 +31,6 @@ class NotificationListenerExampleService : NotificationListenerService() {
         listen the notifications
      */
     private object ApplicationPackageNames {
-        const val FACEBOOK_PACK_NAME = "com.facebook.katana"
-        const val FACEBOOK_MESSENGER_PACK_NAME = "com.facebook.orca"
-        const val WHATSAPP_PACK_NAME = "com.whatsapp"
-        const val INSTAGRAM_PACK_NAME = "com.instagram.android"
     }
 
     /*
@@ -42,7 +38,7 @@ class NotificationListenerExampleService : NotificationListenerService() {
         the notifications, to decide whether we should do something or not
      */
     object InterceptedNotificationCode {
-        const val NOTIFICATION_CODE = 4 // We ignore all notification with code == 4
+        const val NOTIFICATION_CODE = 1
     }
 
     override fun onBind(intent: Intent): IBinder? {
@@ -52,25 +48,21 @@ class NotificationListenerExampleService : NotificationListenerService() {
     override fun onNotificationPosted(sbn: StatusBarNotification) {
         Log.w("asd", "got notification " + sbn.packageName + " " + sbn.notification.extras.getCharSequence("android.text").toString())
         val notificationCode = matchNotificationCode(sbn)
-        if (true) {
-            val intent = Intent("com.github.chagall.notificationlistenerexample")
-            intent.putExtra("Notification Code", notificationCode)
-            sendBroadcast(intent)
-        }
+        val intent = Intent("com.github.chagall.notificationlistenerexample")
+        intent.putExtra("Notification Code", notificationCode)
+        sendBroadcast(intent)
     }
 
     override fun onNotificationRemoved(sbn: StatusBarNotification) {
         val notificationCode = matchNotificationCode(sbn)
-        if (true) {
-            val activeNotifications = this.activeNotifications
-            if (activeNotifications != null && activeNotifications.size > 0) {
-                for (i in activeNotifications.indices) {
-                    if (notificationCode == matchNotificationCode(activeNotifications[i])) {
-                        val intent = Intent("com.example.notifiationgrep")
-                        intent.putExtra("Notification Code", notificationCode)
-                        sendBroadcast(intent)
-                        break
-                    }
+        val activeNotifications = this.activeNotifications
+        if (activeNotifications != null && activeNotifications.size > 0) {
+            for (i in activeNotifications.indices) {
+                if (notificationCode == matchNotificationCode(activeNotifications[i])) {
+                    val intent = Intent("com.example.notifiationgrep")
+                    intent.putExtra("Notification Code", notificationCode)
+                    sendBroadcast(intent)
+                    break
                 }
             }
         }
